@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".app.RoomActivity">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardViewRoomInfo"
+        android:layout_width="match_parent"
+        android:layout_height="120sp"
+        android:backgroundTint="@color/app_blue"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/textViewRoomName"
+            style="@style/card_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Kitchen" />
+
+        <ImageButton
+            android:id="@+id/imageButtonAdd"
+            android:src="@drawable/icon_add_room"
+            android:backgroundTint="#0000"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center|right"
+            android:layout_marginRight="10sp"
+            android:onClick="onClick"/>
+
+        <ImageButton
+            android:id="@+id/imageButtonBack"
+            android:layout_width="25sp"
+            android:layout_height="25sp"
+            android:layout_gravity="center|left"
+            android:layout_marginLeft="10sp"
+            android:backgroundTint="#0000"
+            android:onClick="onClick"
+            app:srcCompat="@drawable/icon_back" />
+    </androidx.cardview.widget.CardView>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/navigation_view_room"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:itemTextColor="@color/app_red"
+        app:itemIconTint="@color/app_red"
+        app:menu="@menu/menu_room"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardViewRoomInfo" />
+
+    <FrameLayout
+        android:id="@+id/frame_layout_room"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/navigation_view_room">
+
+    </FrameLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

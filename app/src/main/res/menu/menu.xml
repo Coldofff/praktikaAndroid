@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/item_home"
+        android:checkable="false"
+        android:icon="@drawable/main_menu_nav"
+        app:showAsAction="ifRoom"
+        android:title="Home" />
+    <item
+        android:id="@+id/item_statics"
+        android:title="Statics"
+        android:icon="@drawable/main_menu_nav2"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/item_routines"
+        android:title="Routines"
+        android:icon="@drawable/main_menu_nav3"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/item_setting"
+        android:title="Setting"
+        android:icon="@drawable/main_menu_nav4"
+        app:showAsAction="ifRoom"/>
+</menu>

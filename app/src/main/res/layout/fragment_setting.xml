@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Fragments.SettingFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="278dp"
+                android:backgroundTint="@color/app_blue">
+                <TextView
+                    android:id="@+id/textViewProfile"
+                    style="@style/card_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center|top"
+                    android:layout_marginTop="30dp"
+                    android:text="@string/Profile" />
+
+                <ImageView
+                    android:id="@+id/imageViewProfilePhoto"
+                    android:layout_width="110dp"
+                    android:layout_height="110dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20sp"
+                    android:src="@drawable/icon_profilephoto" />
+
+                <TextView
+                    android:id="@+id/textViewSave"
+                    style="@style/card_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginRight="10sp"
+                    android:text="@string/Save"
+                    android:textStyle="normal" />
+
+                <ImageButton
+                    android:id="@+id/imageButton"
+                    android:layout_width="45sp"
+                    android:layout_height="45sp"
+                    android:scaleType="fitXY"
+                    android:layout_marginBottom="50sp"
+                    android:layout_marginLeft="45sp"
+                    android:src="@drawable/icon_addphoto"
+                    android:layout_gravity="bottom|center"
+                    android:background="#0000"/>
+            </androidx.cardview.widget.CardView>
+            <TextView
+                android:id="@+id/textViewUserName"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/UserName"
+                style="@style/profile_fields_name"/>
+
+
+            <EditText
+                android:id="@+id/editTextUserName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:text="Loonie Murphy"
+                style="@style/profile_fields" />
+
+            <TextView
+                android:id="@+id/textViewEmail"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/Email"
+                style="@style/profile_fields_name"/>
+
+
+            <EditText
+                android:id="@+id/editTextEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
+                android:text="loonie.murphy@gmail.com"
+                style="@style/profile_fields" />
+
+            <TextView
+                android:id="@+id/textViewPhone"
+                style="@style/profile_fields_name"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/Phone" />
+
+            <EditText
+                android:id="@+id/editTextPhone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="phone"
+                android:text="(264)-748-9228"
+                style="@style/profile_fields" />
+
+            <TextView
+                android:id="@+id/textViewGender"
+                style="@style/profile_fields_name"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/Gender" />
+
+            <EditText
+                android:id="@+id/editTextGender"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="phone"
+                android:text="Female"
+                style="@style/profile_fields" />
+
+            <TextView
+                android:id="@+id/textViewDateOfBirth"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/DateOfBirth"
+                style="@style/profile_fields_name"/>
+
+            <EditText
+                android:id="@+id/editTextDateOfBirth"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="phone"
+                android:text="10/4/1976"
+                style="@style/profile_fields" />
+
+            <TextView
+                android:id="@+id/textViewSignOut"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20sp"
+                android:text="@string/SignOut"
+                android:gravity="center"
+                android:textSize="18sp"
+                android:textColor="@color/red">
+            </TextView>
+        </LinearLayout>
+    </ScrollView>
+</FrameLayout>

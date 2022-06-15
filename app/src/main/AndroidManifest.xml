@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.praktikaandroid" >
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+
+    <uses-permission android:name="android.permission.READ_PRIVILEGED_PHONE_STATE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/house_icon"
+        android:label="@string/SmartHouse"
+        android:roundIcon="@mipmap/house_icon_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.PraktikaAndroid" >
+        <activity
+            android:name=".app.ProfileActivity"
+            android:exported="true" />
+        <activity
+            android:name=".app.RoomActivity"
+            android:exported="true" />
+        <activity
+            android:name=".app.AddRoomActivity"
+            android:exported="true" />
+        <activity
+            android:name=".app.HomePageActivity"
+            android:exported="true" />
+        <activity
+            android:name=".authorization.SignUpActivity"
+            android:exported="true" />
+        <activity
+            android:name=".authorization.SignInActivity"
+            android:exported="true" />
+        <activity
+            android:name=".splash.MainActivity"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

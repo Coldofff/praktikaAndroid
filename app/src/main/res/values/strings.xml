@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">praktikaAndroid</string>
+    <string name="AppName">Smart House</string>
+    <string name="EnterYourHouse">Enter Your House</string>
+    <string name="NewResident">New Resident</string>
+    <string name="Email">E-mail</string>
+    <string name="Name">Name</string>
+    <string name="Password">Password</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="YourHome">Your Home</string>
+    <string name="Location">2715 Ash Dr. San Jose, South Dakota 83475</string>
+    <string name="Profile">Profile</string>
+    <string name="Save">SAVE</string>
+    <string name="UserName">Username</string>
+    <string name="Phone">Phone</string>
+    <string name="Gender">Gender</string>
+    <string name="DateOfBirth">Date Of Birth</string>
+    <string name="SignOut">Sign Out</string>
+    <string name="AddRoom">Add Room</string>
+    <string name="EnterRoomName">Enter Room\'s name</string>
+    <string name="SelectRoomIcon">Select room\'s icon</string>
+    <string name="MainLights">Main lights</string>
+    <string name="Kitchen">Kitchen</string>
+    <string name="lightstrength">light strenght</string>
+    <string name="Lm">lm</string>
+    <string name="Thermostat">Thermostat</string>
+    <string name="Temperature">Temperature,</string>
+    <string name="Fan">Fan</string>
+    <string name="SmartHouse">SmartHouse</string>
+</resources>

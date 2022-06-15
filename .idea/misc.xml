@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/Andrey/AndroidStudioProjects/praktikaAndroid/app/src/main/res/layout/activity_add_room.xml" value="0.286231884057971" />
+        <entry key="..\:/Users/Andrey/AndroidStudioProjects/praktikaAndroid/app/src/main/res/layout/activity_room.xml" value="0.286231884057971" />
+        <entry key="..\:/Users/Andrey/AndroidStudioProjects/praktikaAndroid/app/src/main/res/layout/activity_sign_in.xml" value="0.286231884057971" />
+        <entry key="..\:/Users/Andrey/AndroidStudioProjects/praktikaAndroid/app/src/main/res/layout/activity_sign_up.xml" value="0.3046875" />
+        <entry key="..\:/Users/Andrey/AndroidStudioProjects/praktikaAndroid/app/src/main/res/layout/custom_alert_dialog.xml" value="0.286231884057971" />
+        <entry key="..\:/Users/Andrey/AndroidStudioProjects/praktikaAndroid/app/src/main/res/layout/fragment_light.xml" value="0.286231884057971" />
+        <entry key="..\:/Users/Andrey/AndroidStudioProjects/praktikaAndroid/app/src/main/res/layout/fragment_thermostat.xml" value="0.3333333333333333" />
+        <entry key="..\:/Users/Andrey/AndroidStudioProjects/praktikaAndroid/app/src/main/res/menu/menu.xml" value="0.3046875" />
+        <entry key="..\:/Users/Andrey/AndroidStudioProjects/praktikaAndroid/app/src/main/res/menu/menu_room.xml" value="0.3046875" />
+        <entry key="..\:/Users/Andrey/AndroidStudioProjects/praktikaAndroid/app/src/main/res/mipmap-anydpi-v26/house_icon.xml" value="0.1815" />
+        <entry key="..\:/Users/Andrey/AndroidStudioProjects/praktikaAndroid/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1815" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

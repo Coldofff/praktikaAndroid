@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginHorizontal="10sp"
+    android:layout_marginVertical="10sp">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardViewRoom"
+        android:layout_width="100sp"
+        android:layout_height="100sp"
+        app:cardBackgroundColor="@color/app_gray"
+        app:cardCornerRadius="90dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/imageViewRoom"
+            android:layout_width="55sp"
+            android:layout_height="55sp"
+            android:layout_gravity="center"
+            android:src="@drawable/room_name_bathroom__selected_off" />
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/textViewRoomTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Bathroom"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardViewRoom" />
+</androidx.constraintlayout.widget.ConstraintLayout>
