@@ -17,18 +17,22 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
 public class HomePageActivity extends AppCompatActivity {
+
     FrameLayout frameLayout;
     BottomNavigationView bottomNavigationView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
+
         frameLayout = findViewById(R.id.frame_layout);
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
 
         bottomNavigationView.setItemIconTintList(null);
 
         replaceFragment(new HomePageFragment());
+
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {

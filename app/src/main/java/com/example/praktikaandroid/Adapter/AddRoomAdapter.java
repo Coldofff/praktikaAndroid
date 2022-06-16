@@ -40,6 +40,9 @@ public class AddRoomAdapter extends RecyclerView.Adapter <AddRoomAdapter.ViewHol
         return new ViewHolder(view);
     }
 
+    TextView LastTextView =  null;
+    CardView LastCardView = null;
+    boolean flag=false;
     @Override
     public void onBindViewHolder(@NonNull AddRoomAdapter.ViewHolder holder, int position) {
         AddRoom addRoom = addRooms.get(position);
@@ -49,8 +52,25 @@ public class AddRoomAdapter extends RecyclerView.Adapter <AddRoomAdapter.ViewHol
             @Override
             public void onClick(View view) {
                 onItemClickListener.onItemClick(addRoom);
-                holder.cardViewRoom.setCardBackgroundColor(Color.parseColor("#984E4F"));
-                holder.textViewRoom.setTextColor(Color.parseColor("#984E4F"));
+
+                holder.cardViewRoom.setSelected(!holder.cardViewRoom.isSelected());
+                if(holder.cardViewRoom.isSelected()) {
+                    if(flag) {
+                        LastCardView.setSelected(false);
+                        LastCardView.setCardBackgroundColor(Color.parseColor("#F0F0F0"));
+                        LastTextView.setSelected(false);
+                    }
+                    holder.cardViewRoom.setCardBackgroundColor(Color.parseColor("#984E4F"));
+                    holder.textViewRoom.setSelected(true);
+                }
+                else
+                {
+                    holder.cardViewRoom.setCardBackgroundColor(Color.parseColor("#F0F0F0"));
+                    holder.textViewRoom.setSelected(false);
+                }
+                LastCardView = holder.cardViewRoom;
+                LastTextView = holder.textViewRoom;
+                flag=true;
             }
         });
     }

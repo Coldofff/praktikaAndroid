@@ -17,6 +17,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.praktikaandroid.Fragments.LightFragment;
 import com.example.praktikaandroid.Fragments.ThermostatFragment;
@@ -35,17 +36,18 @@ public class RoomActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_room);
 
+        //Initializing
         textViewTitle = findViewById(R.id.textViewRoomName);
         frameLayout = findViewById(R.id.frame_layout_room);
         navigationView = findViewById(R.id.navigation_view_room);
 
-
+        //Получение названия комнаты
         if((getIntent().getExtras())!=null){
             title = getIntent().getStringExtra("title");
             textViewTitle.setText(title);
         }
 
-
+        //Клик на навигационное меню
         navigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -61,6 +63,7 @@ public class RoomActivity extends AppCompatActivity {
         });
     }
 
+    //обработчик нажатий на кнопки
     public void onClick(View view) {
         switch(view.getId()){
             case R.id.imageButtonBack:
@@ -73,6 +76,7 @@ public class RoomActivity extends AppCompatActivity {
         }
     }
 
+    //Создание и инициализация фрагментов
     public void replaceFragment (Fragment fragment) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -80,18 +84,20 @@ public class RoomActivity extends AppCompatActivity {
         fragmentTransaction.commit();
     }
 
+    //Метод создания alertDialog для создания комнаты
     ImageButton imageButtonLight, imageButtonThermostat;
     TextView textViewLight, textViewThermostat;
-    int flag = 0; //1 - term
-    // 2 - lamp
+    int flag = 0;//1 - term //2 - lamp
     public void alertDialogCreate(){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         View view = LayoutInflater.from(this).inflate(R.layout.custom_alert_dialog,null);
+
         imageButtonLight = view.findViewById(R.id.imageButtonLight);
         imageButtonThermostat = view.findViewById(R.id.imageButtonTerm);
         textViewLight = view.findViewById(R.id.textViewLight);
         textViewThermostat = view.findViewById(R.id.textViewThermostat);
 
+        //Обработчик нажатия кнопки Light
         imageButtonLight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -111,7 +117,7 @@ public class RoomActivity extends AppCompatActivity {
                 }
             }
         });
-
+        //Обработчик нажатия кнопки Thermostat
         imageButtonThermostat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -132,20 +138,24 @@ public class RoomActivity extends AppCompatActivity {
             }
         });
 
-
+        //Создание билдера для alertDialog
         builder.setTitle("Choose Device")
                 .setView(view)
                 .setPositiveButton("Add", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         Menu menu = navigationView.getMenu();
-                        if(flag==1){
-                            menu.add(Menu.NONE,101, Menu.NONE,"Light").setIcon(R.drawable.alamp);
-                            flag=0;
+                        if(menu.size()<2) {
+                            if (flag == 1) {
+                                menu.add(Menu.NONE, 101, Menu.NONE, "Light").setIcon(R.drawable.alamp);
+                                flag = 0;
+                            } else if (flag == 2) {
+                                menu.add(Menu.NONE, 102, Menu.NONE, "Thermostat").setIcon(R.drawable.aterm);
+                                flag = 0;
+                            }
                         }
-                        else if(flag==2){
-                            menu.add(Menu.NONE,102, Menu.NONE,"Thermostat").setIcon(R.drawable.aterm);
-                            flag=0;
+                        else{
+                            Toast.makeText(getApplicationContext(),"You can't add more devices",Toast.LENGTH_LONG).show();
                         }
                     }
                 });
