@@ -6,9 +6,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.praktikaandroid.Adapter.AddRoom;
 import com.example.praktikaandroid.Adapter.AddRoomAdapter;
@@ -25,10 +28,12 @@ public class AddRoomActivity extends AppCompatActivity {
     EditText editTextTextRoomName;
     Intent intentClick;
     int test=1;
+    String text="";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_room);
+
         recyclerViewRooms = findViewById(R.id.recyclerViewRooms);
         editTextTextRoomName = findViewById(R.id.editTextTextRoomName);
         intentClick = new Intent(AddRoomActivity.this, HomePageActivity.class);
