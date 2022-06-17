@@ -30,6 +30,7 @@
         android:layout_height="wrap_content"
         android:text="Bathroom"
         android:textColor="@drawable/card_selector"
+        android:fontFamily="@font/sfprodisplay_regular"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardViewRoom" />

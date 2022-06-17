@@ -40,6 +40,7 @@
                 android:textColor="@color/app_red"
                 android:textSize="14sp"
                 android:textStyle="bold"
+                android:fontFamily="@font/sfprodisplay_regular"
                 app:layout_constraintEnd_toEndOf="@+id/imageViewHomePageItem"
                 app:layout_constraintStart_toStartOf="@+id/imageViewHomePageItem"
                 app:layout_constraintTop_toBottomOf="@+id/imageViewHomePageItem" />
@@ -51,6 +52,7 @@
                 android:layout_marginTop="5sp"
                 android:text="x3 Devices"
                 android:textSize="14sp"
+                android:fontFamily="@font/sfprodisplay_regular"
                 app:layout_constraintEnd_toEndOf="@+id/textViewTitle"
                 app:layout_constraintStart_toStartOf="@+id/textViewTitle"
                 app:layout_constraintTop_toBottomOf="@+id/textViewTitle" />

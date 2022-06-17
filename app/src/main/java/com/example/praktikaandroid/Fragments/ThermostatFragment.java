@@ -2,12 +2,16 @@ package com.example.praktikaandroid.Fragments;
 
 import android.os.Bundle;
 
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import com.example.praktikaandroid.R;
@@ -61,6 +65,9 @@ public class ThermostatFragment extends Fragment implements View.OnClickListener
 
     ImageButton imageButton, imageButtonCool;
     TextView textViewUnderLineTitle;
+    ImageView imageViewTerm;
+    ConstraintLayout layout_turn;
+    Switch switchThermostat;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -72,8 +79,28 @@ public class ThermostatFragment extends Fragment implements View.OnClickListener
         textViewUnderLineTitle = view.findViewById(R.id.textViewUnderLineTitle);
         imageButton = view.findViewById(R.id.imageButtonHeating);
         imageButton.setOnClickListener(this);
+
         imageButtonCool = view.findViewById(R.id.imageButtonCool);
         imageButtonCool.setOnClickListener(this);
+
+        layout_turn=view.findViewById(R.id.layout_turn);
+        switchThermostat=view.findViewById(R.id.switchThermostat);
+        imageViewTerm = view.findViewById(R.id.imageViewTerm);
+
+        switchThermostat.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if(switchThermostat.isChecked()){
+                    layout_turn.setVisibility(View.VISIBLE);
+                    imageViewTerm.setVisibility(View.VISIBLE);
+
+                }
+                else {
+                    layout_turn.setVisibility(View.INVISIBLE);
+                    imageViewTerm.setVisibility(View.INVISIBLE);
+                }
+            }
+        });
 
         if(argument!=null){
             textViewUnderLineTitle.setText(getActivity().getIntent().getStringExtra("title"));

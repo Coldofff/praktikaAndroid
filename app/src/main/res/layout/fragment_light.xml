@@ -33,14 +33,15 @@
 
         <TextView
             android:id="@+id/textViewNumber"
+            style="@style/RoomNumber"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20sp"
             android:text="45"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewUnderLineTitle"
-            style="@style/RoomNumber" />
+            app:layout_constraintTop_toBottomOf="@+id/textViewUnderLineTitle" />
 
 
         <TextView
@@ -49,6 +50,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/lightstrength"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="@+id/textViewNumber"
             app:layout_constraintStart_toStartOf="@+id/textViewNumber"
             app:layout_constraintTop_toBottomOf="@+id/textViewNumber" />
@@ -59,15 +61,20 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/Lm"
+            android:visibility="gone"
             app:layout_constraintStart_toEndOf="@+id/textViewNumber"
             app:layout_constraintTop_toTopOf="@+id/textViewNumber" />
 
-        <ImageView
-            android:id="@+id/imageViewRoomLight"
-            android:layout_width="370sp"
-            android:layout_height="wrap_content"
-            android:scaleType="centerInside"
-            android:src="@drawable/room_light"
+        <SeekBar
+            android:id="@+id/seekBarRoomLight"
+            android:layout_width="400sp"
+            android:layout_height="300sp"
+            android:progress="50"
+            android:progressDrawable="@drawable/custom_seekbar"
+            android:progressTint="@color/app_red"
+            android:rotation="270"
+            android:thumb="@null"
+            android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -77,11 +84,11 @@
             android:id="@+id/imageButtonOnLight"
             android:layout_width="200sp"
             android:layout_height="200sp"
-            android:layout_marginStart="-25dp"
             android:layout_marginTop="-20dp"
+            android:layout_marginEnd="-40dp"
             android:backgroundTint="#0000"
-            android:src="@drawable/button_on_light"
-            app:layout_constraintStart_toEndOf="@+id/textViewNearNumberTitle"
+            android:src="@drawable/button_light"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
 

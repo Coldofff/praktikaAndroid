@@ -8,13 +8,23 @@
         <entry key="..\:/AndroidProjects/praktikaAndroid/app/src/main/res/layout/activity_home_page.xml" value="0.36666666666666664" />
         <entry key="..\:/AndroidProjects/praktikaAndroid/app/src/main/res/layout/addroom_list_item.xml" value="0.36666666666666664" />
         <entry key="..\:/AndroidProjects/praktikaAndroid/app/src/main/res/menu/menu.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Andrey/AndroidStudioProjects/praktikaAndroid/app/src/main/res/drawable/button_light.xml" value="0.1815" />
+        <entry key="..\:/Users/Andrey/AndroidStudioProjects/praktikaAndroid/app/src/main/res/drawable/custom_seekbar.xml" value="0.1815" />
+        <entry key="..\:/Users/Andrey/AndroidStudioProjects/praktikaAndroid/app/src/main/res/drawable/seek_bar_progress.xml" value="0.1815" />
+        <entry key="..\:/Users/Andrey/AndroidStudioProjects/praktikaAndroid/app/src/main/res/drawable/seek_bar_thumb.xml" value="0.1815" />
+        <entry key="..\:/Users/Andrey/AndroidStudioProjects/praktikaAndroid/app/src/main/res/drawable/switch_thumb.xml" value="0.1815" />
+        <entry key="..\:/Users/Andrey/AndroidStudioProjects/praktikaAndroid/app/src/main/res/drawable/switch_thumb_back.xml" value="0.1815" />
+        <entry key="..\:/Users/Andrey/AndroidStudioProjects/praktikaAndroid/app/src/main/res/font/font.xml" value="0.32871794871794874" />
         <entry key="..\:/Users/Andrey/AndroidStudioProjects/praktikaAndroid/app/src/main/res/layout/activity_add_room.xml" value="0.286231884057971" />
         <entry key="..\:/Users/Andrey/AndroidStudioProjects/praktikaAndroid/app/src/main/res/layout/activity_room.xml" value="0.286231884057971" />
         <entry key="..\:/Users/Andrey/AndroidStudioProjects/praktikaAndroid/app/src/main/res/layout/activity_sign_in.xml" value="0.286231884057971" />
         <entry key="..\:/Users/Andrey/AndroidStudioProjects/praktikaAndroid/app/src/main/res/layout/activity_sign_up.xml" value="0.3046875" />
+        <entry key="..\:/Users/Andrey/AndroidStudioProjects/praktikaAndroid/app/src/main/res/layout/addroom_list_item.xml" value="0.3046875" />
         <entry key="..\:/Users/Andrey/AndroidStudioProjects/praktikaAndroid/app/src/main/res/layout/custom_alert_dialog.xml" value="0.286231884057971" />
+        <entry key="..\:/Users/Andrey/AndroidStudioProjects/praktikaAndroid/app/src/main/res/layout/fragment_home_page.xml" value="0.286231884057971" />
         <entry key="..\:/Users/Andrey/AndroidStudioProjects/praktikaAndroid/app/src/main/res/layout/fragment_light.xml" value="0.286231884057971" />
         <entry key="..\:/Users/Andrey/AndroidStudioProjects/praktikaAndroid/app/src/main/res/layout/fragment_thermostat.xml" value="0.3333333333333333" />
+        <entry key="..\:/Users/Andrey/AndroidStudioProjects/praktikaAndroid/app/src/main/res/layout/homepage_list_item.xml" value="0.3046875" />
         <entry key="..\:/Users/Andrey/AndroidStudioProjects/praktikaAndroid/app/src/main/res/menu/menu.xml" value="0.3046875" />
         <entry key="..\:/Users/Andrey/AndroidStudioProjects/praktikaAndroid/app/src/main/res/menu/menu_room.xml" value="0.3046875" />
         <entry key="..\:/Users/Andrey/AndroidStudioProjects/praktikaAndroid/app/src/main/res/mipmap-anydpi-v26/house_icon.xml" value="0.1815" />
