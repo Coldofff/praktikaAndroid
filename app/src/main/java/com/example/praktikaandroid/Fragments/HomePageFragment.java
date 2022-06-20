@@ -16,6 +16,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TabHost;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.praktikaandroid.Adapter.AddRoom;
 import com.example.praktikaandroid.Adapter.HomePage;
@@ -56,8 +57,7 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
         setHomePages();
 
         if(arguments!=null){
-            addRoom = (AddRoom) arguments.getSerializable(AddRoom.class.getSimpleName());
-            homePages.add(new HomePage(addRoom.getImage(),addRoom.getTitle(),""));
+            homePages.add(new HomePage(getActivity().getIntent().getIntExtra("Image",0),getActivity().getIntent().getStringExtra("Title"),"x2 devices"));
         }
 
         imageButtonAdd.setOnClickListener(this);

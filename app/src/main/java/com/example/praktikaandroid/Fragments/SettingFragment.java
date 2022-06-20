@@ -11,6 +11,7 @@ import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,10 +19,12 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.praktikaandroid.R;
 import com.example.praktikaandroid.authorization.SignInActivity;
 
+import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 
@@ -37,7 +40,9 @@ public class SettingFragment extends Fragment implements View.OnClickListener{
     EditText editTextUserName,editTextEmail,editTextPhone,editTextGender, editTextDateOfBirth;
     ImageButton imageButtonAddPhoto;
     ImageView imageViewProfilePhoto;
-    int Pick_image=1;
+    int Pick_image = 1;
+    Bitmap selectedImage;
+    String encoded = "";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -61,6 +66,8 @@ public class SettingFragment extends Fragment implements View.OnClickListener{
         editTextPhone = view.findViewById(R.id.editTextPhone);
         editTextGender = view.findViewById(R.id.editTextGender);
         editTextDateOfBirth = view.findViewById(R.id.editTextDateOfBirth);
+
+        getInfo();
 
         return view;
     }
@@ -91,7 +98,7 @@ public class SettingFragment extends Fragment implements View.OnClickListener{
             try {
                 final Uri imageUri = data.getData();
                 final InputStream imageStream = getActivity().getContentResolver().openInputStream(imageUri);
-                final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
+                selectedImage = BitmapFactory.decodeStream(imageStream);
                 imageViewProfilePhoto.setImageBitmap(selectedImage);
 
             } catch (FileNotFoundException e) {
@@ -101,6 +108,14 @@ public class SettingFragment extends Fragment implements View.OnClickListener{
     }
 
     public void saveInfo(){
+
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        selectedImage.compress(Bitmap.CompressFormat.PNG,100,byteArrayOutputStream);
+        byte [] bytes = byteArrayOutputStream.toByteArray();
+
+        encoded = Base64.encodeToString(bytes,Base64.DEFAULT);
+        editor.putString("Picture", encoded);
+
         editor.putString("UserName",editTextUserName.getText().toString());
         editor.putString("Email",editTextEmail.getText().toString());
         editor.putString("Phone",editTextPhone.getText().toString());
@@ -109,9 +124,10 @@ public class SettingFragment extends Fragment implements View.OnClickListener{
         editor.apply();
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
+    public void getInfo(){
+        byte [] imageAsBytes = Base64.decode(mSettings.getString("Picture",""), Base64.DEFAULT);
+        imageViewProfilePhoto.setImageBitmap(BitmapFactory.decodeByteArray(imageAsBytes,0,imageAsBytes.length));
+
         editTextUserName.setText(mSettings.getString("UserName",""));
         editTextEmail.setText(mSettings.getString("Email",""));
         editTextPhone.setText(mSettings.getString("Phone",""));

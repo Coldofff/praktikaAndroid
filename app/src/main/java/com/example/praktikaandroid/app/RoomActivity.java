@@ -88,6 +88,7 @@ public class RoomActivity extends AppCompatActivity {
     ImageButton imageButtonLight, imageButtonThermostat;
     TextView textViewLight, textViewThermostat;
     int flag = 0;//1 - term //2 - lamp
+
     public void alertDialogCreate(){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         View view = LayoutInflater.from(this).inflate(R.layout.custom_alert_dialog,null);
@@ -117,6 +118,7 @@ public class RoomActivity extends AppCompatActivity {
                 }
             }
         });
+
         //Обработчик нажатия кнопки Thermostat
         imageButtonThermostat.setOnClickListener(new View.OnClickListener() {
             @Override

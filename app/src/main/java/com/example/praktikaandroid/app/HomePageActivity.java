@@ -27,6 +27,7 @@ public class HomePageActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home_page);
 
         frameLayout = findViewById(R.id.frame_layout);
+
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
 
         bottomNavigationView.setItemIconTintList(null);

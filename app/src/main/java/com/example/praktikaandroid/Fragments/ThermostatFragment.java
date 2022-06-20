@@ -1,7 +1,14 @@
 package com.example.praktikaandroid.Fragments;
 
+import android.graphics.Color;
+import android.graphics.LinearGradient;
+import android.graphics.Shader;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.ShapeDrawable;
+import android.graphics.drawable.shapes.RectShape;
 import android.os.Bundle;
 
+import androidx.appcompat.widget.AppCompatSeekBar;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 
@@ -11,6 +18,7 @@ import android.view.ViewGroup;
 import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.SeekBar;
 import android.widget.Switch;
 import android.widget.TextView;
 
@@ -19,10 +27,13 @@ import com.example.praktikaandroid.R;
 public class ThermostatFragment extends Fragment implements View.OnClickListener{
 
     ImageButton imageButton, imageButtonCool;
-    TextView textViewUnderLineTitle;
+    TextView textViewUnderLineTitle,textViewTemperature;
     ImageView imageViewTerm;
     ConstraintLayout layout_turn;
     Switch switchThermostat;
+    String text="30";
+    String textMinus="-30";
+    AppCompatSeekBar appCompatSeekBar;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -34,6 +45,8 @@ public class ThermostatFragment extends Fragment implements View.OnClickListener
 
         textViewUnderLineTitle = view.findViewById(R.id.textViewUnderLineTitle);
         imageButton = view.findViewById(R.id.imageButtonHeating);
+        textViewTemperature=view.findViewById(R.id.textViewTemperature);
+
         imageButton.setOnClickListener(this);
 
         imageButtonCool = view.findViewById(R.id.imageButtonCool);
@@ -42,6 +55,7 @@ public class ThermostatFragment extends Fragment implements View.OnClickListener
         layout_turn=view.findViewById(R.id.layout_turn);
         switchThermostat=view.findViewById(R.id.switchThermostat);
         imageViewTerm = view.findViewById(R.id.imageViewTerm);
+        appCompatSeekBar = view.findViewById(R.id.seekBarFan);
 
         switchThermostat.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -49,7 +63,6 @@ public class ThermostatFragment extends Fragment implements View.OnClickListener
                 if(switchThermostat.isChecked()){
                     layout_turn.setVisibility(View.VISIBLE);
                     imageViewTerm.setVisibility(View.VISIBLE);
-
                 }
                 else {
                     layout_turn.setVisibility(View.INVISIBLE);
@@ -74,6 +87,7 @@ public class ThermostatFragment extends Fragment implements View.OnClickListener
                     imageButton.setImageResource(R.drawable.heating_on);
                     imageButtonCool.setImageResource(R.drawable.cool_button_off);
                     imageButtonCool.setSelected(false);
+                    textViewTemperature.setText(text);
                 }
                 else{
                     imageButton.setImageResource(R.drawable.heating_button);
@@ -85,6 +99,7 @@ public class ThermostatFragment extends Fragment implements View.OnClickListener
                     imageButtonCool.setImageResource(R.drawable.cool_button);
                     imageButton.setImageResource(R.drawable.heating_button);
                     imageButton.setSelected(false);
+                    textViewTemperature.setText(textMinus);
                 }
                 else{
                     imageButtonCool.setImageResource(R.drawable.cool_button_off);

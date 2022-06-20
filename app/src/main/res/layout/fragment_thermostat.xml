@@ -102,7 +102,7 @@
                 app:layout_constraintStart_toEndOf="@+id/textViewUnderDegree" />
 
             <TextView
-                android:id="@+id/textView"
+                android:id="@+id/textViewTemperature"
                 style="@style/RoomNumber"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -117,8 +117,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="°"
-                app:layout_constraintStart_toEndOf="@+id/textView"
-                app:layout_constraintTop_toTopOf="@+id/textView" />
+                app:layout_constraintStart_toEndOf="@+id/textViewTemperature"
+                app:layout_constraintTop_toTopOf="@+id/textViewTemperature" />
 
             <TextView
                 android:id="@+id/textViewUnderDegree"
@@ -128,7 +128,7 @@
                 android:layout_marginStart="10dp"
                 android:text="@string/Temperature"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView" />
+                app:layout_constraintTop_toBottomOf="@+id/textViewTemperature" />
 
             <ImageButton
                 android:id="@+id/imageButtonHeating"
@@ -157,7 +157,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="-5sp"
                 android:layout_marginTop="10sp"
-                android:progressDrawable="@drawable/seek_bar_progress_back"
+                android:progressDrawable="@drawable/progress_drawable"
+                android:progress="20"
                 android:thumb="@drawable/seek_bar_thumb"
                 android:splitTrack="false"
                 app:layout_constraintStart_toStartOf="parent"

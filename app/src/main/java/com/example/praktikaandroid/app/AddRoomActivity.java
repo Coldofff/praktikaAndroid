@@ -27,8 +27,7 @@ public class AddRoomActivity extends AppCompatActivity {
     AddRoomAdapter addRoomAdapter;
     EditText editTextTextRoomName;
     Intent intentClick;
-    int test=1;
-    String text="";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,7 +36,6 @@ public class AddRoomActivity extends AppCompatActivity {
         recyclerViewRooms = findViewById(R.id.recyclerViewRooms);
         editTextTextRoomName = findViewById(R.id.editTextTextRoomName);
         intentClick = new Intent(AddRoomActivity.this, HomePageActivity.class);
-        intentClick.putExtra(AddRoom.class.getSimpleName(), new AddRoom(R.drawable.room_name_kitchen__selected_off,"Kitchen"));
 
         setRooms();
 
@@ -46,6 +44,7 @@ public class AddRoomActivity extends AppCompatActivity {
             public void onItemClick(AddRoom addRoom) {
                 editTextTextRoomName.setText(addRoom.getTitle());
                 intentClick.putExtra(AddRoom.class.getSimpleName(), addRoom);
+                intentClick.putExtra("Title",editTextTextRoomName.getText().toString());
             }
         };
 

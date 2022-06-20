@@ -33,7 +33,7 @@
                     android:layout_gravity="center"
                     android:layout_marginTop="20sp"
                     android:scaleType="fitXY"
-                    android:src="@drawable/icon_profilephoto" />
+                    app:srcCompat="@mipmap/house_icon" />
 
                 <TextView
                     android:id="@+id/textViewSave"
@@ -115,7 +115,7 @@
                 android:id="@+id/editTextGender"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="phone"
+                android:inputType="text"
                 android:text="Female"
                 style="@style/profile_fields" />
 
