@@ -5,10 +5,9 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -16,10 +15,11 @@ import android.widget.Toast;
 import com.example.praktikaandroid.Adapter.AddRoom;
 import com.example.praktikaandroid.Adapter.AddRoomAdapter;
 import com.example.praktikaandroid.R;
+import com.example.praktikaandroid.api.ApiFetcher;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 public class AddRoomActivity extends AppCompatActivity {
     RecyclerView recyclerViewRooms;
@@ -27,6 +27,9 @@ public class AddRoomActivity extends AppCompatActivity {
     AddRoomAdapter addRoomAdapter;
     EditText editTextTextRoomName;
     Intent intentClick;
+    static final String APP_PREFERENCES = "settings";
+    static final String APP_PREFERENCES_TOKEN = "Token";
+    SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +38,9 @@ public class AddRoomActivity extends AppCompatActivity {
 
         recyclerViewRooms = findViewById(R.id.recyclerViewRooms);
         editTextTextRoomName = findViewById(R.id.editTextTextRoomName);
+        sharedPreferences = getSharedPreferences(APP_PREFERENCES,MODE_PRIVATE);
         intentClick = new Intent(AddRoomActivity.this, HomePageActivity.class);
+
 
         setRooms();
 
@@ -59,6 +64,7 @@ public class AddRoomActivity extends AppCompatActivity {
                 finish();
                 break;
             case R.id.textViewSave:
+                new postRoom().execute();
                 startActivity(intentClick);
                 finish();
                 break;
@@ -75,5 +81,27 @@ public class AddRoomActivity extends AppCompatActivity {
         addRooms.add(new AddRoom(R.drawable.room_name_garage__selected_on,"Garage"));
         addRooms.add(new AddRoom(R.drawable.room_name_toilet__selected_on,"Toilet"));
         addRooms.add(new AddRoom(R.drawable.room_name_kids_room__selected_on,"Kid Room"));
+    }
+
+    public class postRoom extends AsyncTask<Void, Void, String> {
+
+        String result = "";
+        String link = "https://smarthome.madskill.ru/rooms";
+
+        @Override
+        protected String doInBackground(Void... voids) {
+            try {
+                result = new ApiFetcher().postRoom(link,editTextTextRoomName.getText().toString(),"Kitchen",sharedPreferences.getString("authToken",""),sharedPreferences.getString(APP_PREFERENCES_TOKEN,""));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return result;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            Toast.makeText(getApplicationContext(),s,Toast.LENGTH_LONG).show();
+            super.onPostExecute(s);
+        }
     }
 }

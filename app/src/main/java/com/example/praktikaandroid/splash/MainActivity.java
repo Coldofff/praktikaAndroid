@@ -10,6 +10,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.Settings;
+import android.util.Log;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
@@ -22,6 +23,7 @@ import com.example.praktikaandroid.authorization.SignInActivity;
 import org.json.JSONException;
 
 import java.io.IOException;
+import java.util.UUID;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -34,17 +36,17 @@ public class MainActivity extends AppCompatActivity {
     SharedPreferences.Editor editor;
     String appId = "com.example.praktikaandroid";
     String device = "";
-    String androidId = " ";
+    String UUId = " ";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        androidId = Settings.Secure.getString(this.getContentResolver(),Settings.Secure.ANDROID_ID);
+        UUId = UUID.randomUUID().toString().toUpperCase();
 
         mSettings = getSharedPreferences(APP_PREFERENCES,Context.MODE_PRIVATE);
         editor = mSettings.edit();
-        editor.putString(APP_PREFERENCES_TOKEN,androidId);
+        editor.putString(APP_PREFERENCES_TOKEN,UUId);
         editor.apply();
 
         setContentView(R.layout.activity_main);
@@ -72,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected String doInBackground(String... strings) {
             try {
-                response = new ApiFetcher().sendPostMobileRegister("https://smarthome.madskill.ru/mobile",androidId.toUpperCase(),appId,device);
+                response = new ApiFetcher().sendPostMobileRegister("https://smarthome.madskill.ru/mobile",UUId,appId,device);
             } catch (IOException e) {
                 e.printStackTrace();
             } catch (JSONException e) {
@@ -84,6 +86,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
+            Toast.makeText(getApplicationContext(),s,Toast.LENGTH_LONG).show();
             editor.putString("key",s);
             editor.apply();
         }

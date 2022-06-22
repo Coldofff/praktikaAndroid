@@ -50,6 +50,7 @@ public class SettingFragment extends Fragment implements View.OnClickListener{
 
         mSettings = getActivity().getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
         editor = mSettings.edit();
+
         View view = inflater.inflate(R.layout.fragment_setting,container,false);
 
         textViewSignOut = view.findViewById(R.id.textViewSignOut);
@@ -66,6 +67,7 @@ public class SettingFragment extends Fragment implements View.OnClickListener{
         editTextPhone = view.findViewById(R.id.editTextPhone);
         editTextGender = view.findViewById(R.id.editTextGender);
         editTextDateOfBirth = view.findViewById(R.id.editTextDateOfBirth);
+
 
         getInfo();
 
@@ -108,7 +110,6 @@ public class SettingFragment extends Fragment implements View.OnClickListener{
     }
 
     public void saveInfo(){
-
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         selectedImage.compress(Bitmap.CompressFormat.PNG,100,byteArrayOutputStream);
         byte [] bytes = byteArrayOutputStream.toByteArray();
@@ -125,8 +126,11 @@ public class SettingFragment extends Fragment implements View.OnClickListener{
     }
 
     public void getInfo(){
-        byte [] imageAsBytes = Base64.decode(mSettings.getString("Picture",""), Base64.DEFAULT);
-        imageViewProfilePhoto.setImageBitmap(BitmapFactory.decodeByteArray(imageAsBytes,0,imageAsBytes.length));
+
+        if(!mSettings.getString("Picture", "").equals("")) {
+            byte[] imageAsBytes = Base64.decode(mSettings.getString("Picture", ""), Base64.DEFAULT);
+            imageViewProfilePhoto.setImageBitmap(BitmapFactory.decodeByteArray(imageAsBytes, 0, imageAsBytes.length));
+        }
 
         editTextUserName.setText(mSettings.getString("UserName",""));
         editTextEmail.setText(mSettings.getString("Email",""));

@@ -1,14 +1,18 @@
 package com.example.praktikaandroid.Fragments;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,15 +20,20 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TabHost;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.praktikaandroid.Adapter.AddRoom;
 import com.example.praktikaandroid.Adapter.HomePage;
 import com.example.praktikaandroid.Adapter.HomePageAdapter;
 import com.example.praktikaandroid.R;
+import com.example.praktikaandroid.api.ApiFetcher;
 import com.example.praktikaandroid.app.AddRoomActivity;
 import com.example.praktikaandroid.app.RoomActivity;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,6 +47,10 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
     AddRoom addRoom;
     TabHost tabHost;
     ImageView imageView;
+    static final String APP_PREFERENCES = "settings";
+    static final String APP_PREFERENCES_TOKEN = "Token";
+    SharedPreferences sharedPreferences;
+    HomePageAdapter.onItemClickListener onItemClickListener;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -47,6 +60,7 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
         imageButtonAdd = v.findViewById(R.id.imageButtonAdd);
         tabHost = v.findViewById(R.id.tabHost);
         imageView = v.findViewById(R.id.imageView);
+        sharedPreferences = getActivity().getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
 
         Bundle arguments = getActivity().getIntent().getExtras();
 
@@ -54,10 +68,12 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
         setTabHost();
 
         //filling recyclerview list
-        setHomePages();
+//        setHomePages();
+
+        new getRooms().execute();
 
         if(arguments!=null){
-            homePages.add(new HomePage(getActivity().getIntent().getIntExtra("Image",0),getActivity().getIntent().getStringExtra("Title"),"x2 devices"));
+//            homePages.add(new HomePage(getActivity().getIntent().getIntExtra("Image",0),getActivity().getIntent().getStringExtra("Title"),"x2 devices"));
         }
 
         imageButtonAdd.setOnClickListener(this);
@@ -65,7 +81,7 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
         layoutManager = new GridLayoutManager(getActivity(),2);
 
 
-        HomePageAdapter.onItemClickListener onItemClickListener = new HomePageAdapter.onItemClickListener() {
+        onItemClickListener = new HomePageAdapter.onItemClickListener() {
             @Override
             public void onItemClick(HomePage homepage, String title) {
                 Intent intent = new Intent(getActivity(), RoomActivity.class);
@@ -73,9 +89,7 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
                 startActivity(intent);
             }
         };
-        homePageAdapter = new HomePageAdapter(getActivity(), homePages, onItemClickListener);
-        recyclerView.setAdapter(homePageAdapter);
-        recyclerView.setLayoutManager(layoutManager);
+
         return v;
     }
 
@@ -109,4 +123,36 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
         }
     }
 
+    public class getRooms extends AsyncTask<Void, Void, List<HomePage>> {
+
+        String link = "https://smarthome.madskill.ru/rooms";
+        String response = "";
+
+        @Override
+        protected List<HomePage> doInBackground(Void... voids) {
+            try {
+                response = new ApiFetcher().getRooms(link,sharedPreferences.getString("authToken",""),sharedPreferences.getString(APP_PREFERENCES_TOKEN,""));
+                JSONObject jsonObject = new JSONObject(response);
+                JSONArray itemsArray = jsonObject.getJSONArray("items");
+                for(int i=0;i<itemsArray.length();i++){
+                    HomePage homePage = new HomePage();
+                    homePage.setTitle(itemsArray.getJSONObject(i).getString("name"));
+                    homePages.add(homePage);
+                }
+            } catch (IOException | JSONException e) {
+                e.printStackTrace();
+            }
+
+            return homePages;
+        }
+
+        @Override
+        protected void onPostExecute(List<HomePage> s) {
+            super.onPostExecute(s);
+            homePageAdapter = new HomePageAdapter(getActivity(), s, onItemClickListener);
+            recyclerView.setAdapter(homePageAdapter);
+            recyclerView.setLayoutManager(layoutManager);
+            homePageAdapter.notifyDataSetChanged();
+        }
+    }
 }
