@@ -1,24 +1,27 @@
 package com.example.praktikaandroid.splash;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
 
-import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
+import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.Settings;
-import android.telephony.TelephonyManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.praktikaandroid.R;
+import com.example.praktikaandroid.api.ApiFetcher;
 import com.example.praktikaandroid.authorization.SignInActivity;
+
+import org.json.JSONException;
+
+import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -29,12 +32,16 @@ public class MainActivity extends AppCompatActivity {
     static final String APP_PREFERENCES_TOKEN = "Token";
     SharedPreferences mSettings;
     SharedPreferences.Editor editor;
+    String appId = "com.example.praktikaandroid";
+    String device = "";
+    String androidId = " ";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        String androidId = Settings.Secure.getString(this.getContentResolver(),Settings.Secure.ANDROID_ID);
+        androidId = Settings.Secure.getString(this.getContentResolver(),Settings.Secure.ANDROID_ID);
+
         mSettings = getSharedPreferences(APP_PREFERENCES,Context.MODE_PRIVATE);
         editor = mSettings.edit();
         editor.putString(APP_PREFERENCES_TOKEN,androidId);
@@ -45,6 +52,9 @@ public class MainActivity extends AppCompatActivity {
         Animation animation = AnimationUtils.loadAnimation(this, R.anim.anim);
         imageViewSplash.setAnimation(animation);
 
+        device=Build.BRAND.toUpperCase() + " " + Build.MODEL.toUpperCase();
+
+        new appRegister().execute();
 
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -55,5 +65,27 @@ public class MainActivity extends AppCompatActivity {
             }
         }, splash_length);
 
+    }
+
+    public class appRegister extends AsyncTask<String, Void, String> {
+        String response = "";
+        @Override
+        protected String doInBackground(String... strings) {
+            try {
+                response = new ApiFetcher().sendPostMobileRegister("https://smarthome.madskill.ru/mobile",androidId.toUpperCase(),appId,device);
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            return response;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+            editor.putString("key",s);
+            editor.apply();
+        }
     }
 }

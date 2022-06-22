@@ -3,21 +3,23 @@ package com.example.praktikaandroid.authorization;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.praktikaandroid.R;
-import com.example.praktikaandroid.app.HomePageActivity;
+import com.example.praktikaandroid.api.ApiFetcher;
 
-import java.util.regex.Pattern;
+import org.json.JSONException;
+
+import java.io.IOException;
 
 public class SignUpActivity extends AppCompatActivity {
-
+    String result = "";
     EditText editTextSignUpEmail, editTextSignUpName, editTextSignUpPassword;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,9 +34,10 @@ public class SignUpActivity extends AppCompatActivity {
         switch (view.getId()){
             case R.id.buttonNewResident:
                 if(checkEmptyFields() && correctEmail()){
-                    Intent intentAuthorization = new Intent(SignUpActivity.this, SignInActivity.class);
+                    new registerAPI().execute();
+                   /* Intent intentAuthorization = new Intent(SignUpActivity.this, SignInActivity.class);
                     startActivity(intentAuthorization);
-                    finish();
+                    finish();*/
                 }
                 break;
             case R.id.buttonEnterYourHouse:
@@ -83,5 +86,25 @@ public class SignUpActivity extends AppCompatActivity {
                 });
         builder.create();
         builder.show();
+    }
+    public class registerAPI extends AsyncTask<String, Void, String> {
+
+        @Override
+        protected String doInBackground(String... strings) {
+            try {
+                result = new ApiFetcher().sendPostRegister("https://smarthome.madskill.ru/user","vasya@mail.com","Vasya","qwerty","5FA1B987-3890-4A87-9712-ACDEAD0173AE");
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            return result;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+            Toast.makeText(getApplicationContext(),s,Toast.LENGTH_LONG).show();
+        }
     }
 }
