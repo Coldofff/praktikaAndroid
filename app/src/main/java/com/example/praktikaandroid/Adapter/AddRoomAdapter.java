@@ -17,11 +17,9 @@ import com.example.praktikaandroid.R;
 import java.util.List;
 
 public class AddRoomAdapter extends RecyclerView.Adapter <AddRoomAdapter.ViewHolder> {
-
     LayoutInflater inflater;
     List<AddRoom> addRooms;
     OnItemClickListener onItemClickListener;
-
 
     public interface OnItemClickListener {
         void onItemClick (AddRoom addRoom);
