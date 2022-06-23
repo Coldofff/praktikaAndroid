@@ -46,11 +46,17 @@ public class MainActivity extends AppCompatActivity {
 
         mSettings = getSharedPreferences(APP_PREFERENCES,Context.MODE_PRIVATE);
         editor = mSettings.edit();
-        editor.putString(APP_PREFERENCES_TOKEN,UUId);
-        editor.apply();
+
+        if(mSettings.getString(APP_PREFERENCES_TOKEN,"").equals("")) {
+            editor.putString(APP_PREFERENCES_TOKEN, UUId);
+            editor.apply();
+        }
+
+        Toast.makeText(this, mSettings.getString(APP_PREFERENCES_TOKEN,""),Toast.LENGTH_LONG).show();
 
         setContentView(R.layout.activity_main);
         imageViewSplash=findViewById(R.id.imageViewSplash);
+
         Animation animation = AnimationUtils.loadAnimation(this, R.anim.anim);
         imageViewSplash.setAnimation(animation);
 

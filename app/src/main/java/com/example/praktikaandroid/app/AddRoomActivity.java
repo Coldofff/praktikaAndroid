@@ -61,6 +61,8 @@ public class AddRoomActivity extends AppCompatActivity {
     public void onClick(View view) {
         switch(view.getId()){
             case R.id.imageButtonBack:
+                Intent intentBack = new Intent(AddRoomActivity.this, HomePageActivity.class);
+                startActivity(intentBack);
                 finish();
                 break;
             case R.id.textViewSave:

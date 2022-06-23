@@ -115,6 +115,7 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
             case R.id.imageButtonAdd:
                 Intent intent = new Intent(getActivity(), AddRoomActivity.class);
                 startActivity(intent);
+                getActivity().finish();
                 break;
             case R.id.imageView:
                 Intent intentMap = new Intent(Intent.ACTION_VIEW, Uri.parse("http://maps.google.com/maps?saddr=20.344,34.34&daddr=20.5666,45.345"));
@@ -134,9 +135,12 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
                 response = new ApiFetcher().getRooms(link,sharedPreferences.getString("authToken",""),sharedPreferences.getString(APP_PREFERENCES_TOKEN,""));
                 JSONObject jsonObject = new JSONObject(response);
                 JSONArray itemsArray = jsonObject.getJSONArray("items");
+                Log.d("app",itemsArray.toString());
                 for(int i=0;i<itemsArray.length();i++){
                     HomePage homePage = new HomePage();
                     homePage.setTitle(itemsArray.getJSONObject(i).getString("name"));
+                    homePage.setImage(R.drawable.room_name_kitchen__selected_off);
+                    homePage.setInfo("x2 devices");
                     homePages.add(homePage);
                 }
             } catch (IOException | JSONException e) {
