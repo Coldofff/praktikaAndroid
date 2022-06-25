@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -22,13 +23,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.praktikaandroid.R;
+import com.example.praktikaandroid.api.ApiFetcher;
 import com.example.praktikaandroid.authorization.SignInActivity;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
-
-import javax.xml.transform.Result;
 
 public class SettingFragment extends Fragment implements View.OnClickListener{
 
@@ -81,6 +82,7 @@ public class SettingFragment extends Fragment implements View.OnClickListener{
                 saveInfo();
                 break;
             case R.id.textViewSignOut:
+                new deleteAccount().execute();
                 Intent intentSignOut = new Intent(getActivity(), SignInActivity.class);
                 getActivity().finish();
                 startActivity(intentSignOut);
@@ -137,5 +139,25 @@ public class SettingFragment extends Fragment implements View.OnClickListener{
         editTextPhone.setText(mSettings.getString("Phone",""));
         editTextGender.setText(mSettings.getString("Gender",""));
         editTextDateOfBirth.setText(mSettings.getString("DateOfBirth",""));
+    }
+
+    public class deleteAccount extends AsyncTask<Void, Void, String> {
+        String link = "https://smarthome.madskill.ru/user";
+        String result = "";
+        @Override
+        protected String doInBackground(Void... voids) {
+            try {
+                result = new ApiFetcher().deleteAccount(link,mSettings.getString("authToken",""));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return result;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+            Toast.makeText(getActivity().getApplicationContext(),s,Toast.LENGTH_LONG).show();
+        }
     }
 }

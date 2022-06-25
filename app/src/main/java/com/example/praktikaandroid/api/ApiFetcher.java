@@ -28,7 +28,6 @@ public class ApiFetcher {
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
         connection.setRequestMethod("POST");
         connection.setRequestProperty("Content-Type","application/json;charset=UTF-8");
-        connection.setRequestProperty("Accept","application/json");
 
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("uuid",uuid);
@@ -58,8 +57,6 @@ public class ApiFetcher {
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
         connection.setRequestMethod("POST");
 
-        connection.setRequestProperty("Content-Type","application/json;charset=UTF-8");
-        connection.setRequestProperty("Accept","application/json");
         connection.setRequestProperty("email",email);
         connection.setRequestProperty("name",name);
         connection.setRequestProperty("password",password);
@@ -68,7 +65,7 @@ public class ApiFetcher {
 
         connection.disconnect();
 
-        return connection.getResponseMessage();
+        return String.valueOf(connection.getResponseCode());
     }
 
     public String sendPostAuth(String link, String email, String password, String uuid) throws IOException, JSONException {
@@ -80,8 +77,6 @@ public class ApiFetcher {
         connection.setRequestMethod("POST");
 
         connection.setRequestProperty("X-HTTP-Method-Override","OPTIONS");
-        connection.setRequestProperty("Content-Type","application/json;charset=UTF-8");
-        connection.setRequestProperty("Accept","application/json");
 
         connection.setRequestProperty("email",email);
         connection.setRequestProperty("password",password);
@@ -114,6 +109,7 @@ public class ApiFetcher {
 
         URL url = new URL(link);
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+
         connection.setRequestMethod("GET");
         connection.setRequestProperty("token",token);
         connection.setRequestProperty("uuid",UUID);
@@ -142,6 +138,14 @@ public class ApiFetcher {
         connection.setRequestProperty("token",token);
         connection.setRequestProperty("uuid",uuid);
 
+        return connection.getResponseMessage();
+    }
+
+    public String deleteAccount(String link, String uuid) throws IOException {
+        URL url = new URL(link);
+        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+        connection.setRequestMethod("DELETE");
+        connection.setRequestProperty("token",uuid);
         return connection.getResponseMessage();
     }
 }
